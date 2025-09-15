@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0SFZInEVaGcDK7I/nbmxwEp91Wf0ZLdK7mxmaf84CFY=",
+  "Hash": "o6+bs14V5dF4xlbBubJSqeFcF78rcg1V+pimTWoqcdA=",
   "Source": "projet_one",
   "BasePath": "_content/projet_one",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/ishak/projet_one/obj/Debug/net8.0/scopedcss/projectbundle/projet_one.bundle.scp.css"
+    },
+    {
+      "Identity": "/home/ishak/projet_one/wwwroot/css/acceuil.css",
+      "SourceId": "projet_one",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/ishak/projet_one/wwwroot/",
+      "BasePath": "_content/projet_one",
+      "RelativePath": "css/acceuil.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/acceuil.css"
     },
     {
       "Identity": "/home/ishak/projet_one/wwwroot/css/site.css",

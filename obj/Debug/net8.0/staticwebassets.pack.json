@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets/projet_one.bundle.scp.css"
     },
     {
+      "Id": "/home/ishak/projet_one/wwwroot/css/acceuil.css",
+      "PackagePath": "staticwebassets/css/acceuil.css"
+    },
+    {
       "Id": "/home/ishak/projet_one/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
