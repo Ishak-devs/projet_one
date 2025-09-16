@@ -230,30 +230,45 @@
                 <div class="col-lg-8">
                     <div class="card p-4">
                         <p class="text-center mb-4">Laissez-nous vos coordonnées et nous vous recontacterons rapidement pour échanger sur votre projet.</p>
-                        <form asp-action="Enregistrer" asp-controller="Home" method="post">
+                        <form asp-action="Enregistrer" asp-controller="Home" method="post" id="contactForm">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label for="Nom_enseigne" class="form-label">Nom de l'enseigne</label>
-                                    <input type="text" class="form-control" asp-for="Nom_enseigne" required>
+                                    <input type="text" class="form-control" asp-for="Nom_enseigne" placeholder="Ex : MonEntreprise" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="Nom" class="form-label">Votre nom</label>
-                                    <input type="text" class="form-control" asp-for="Nom" required>
+                                    <input type="text" class="form-control" asp-for="Nom" placeholder="Ex : Jean Dupont" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="Email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" asp-for="Email" required>
+                                    <input type="email" class="form-control" asp-for="Email" placeholder="exemple@mail.com" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="Telephone" class="form-label">Téléphone</label>
-                                    <input type="tel" class="form-control" asp-for="Telephone">
+                                    <input type="tel" class="form-control" asp-for="Telephone" placeholder="06 12 34 56 78">
                                 </div>
                                 <div class="col-12 text-center mt-4">
-                                    <button type="submit" class="btn btn-primary btn-lg">Envoyer la demande</button>
+                                    <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                                        <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                        <span id="btnText">Envoyer la demande</span>
+                                    </button>
+                                    <div id="successMsg" class="alert alert-success mt-3 d-none" role="alert">
+                                        Merci pour votre message ! Nous vous contacterons très rapidement.
+                                    </div>
                                 </div>
                             </div>
                         </form>
+                        <script>
+                        document.getElementById('contactForm').addEventListener('submit', function(e) {
+                            var btn = document.getElementById('submitBtn');
+                            var spinner = document.getElementById('spinner');
+                            var btnText = document.getElementById('btnText');
+                            spinner.classList.remove('d-none');
+                            btnText.textContent = 'Envoi en cours...';
+                        });
+                        </script>
                     </div>
                 </div>
             </div>
