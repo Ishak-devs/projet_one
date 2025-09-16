@@ -1,16 +1,20 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using projet_one.Models;
+using projet_one.Data;
 
 namespace projet_one.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly ApplicationDbContext _context;
 
-    public HomeController(ILogger<HomeController> logger)
+
+    public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
     public IActionResult Index()
@@ -25,7 +29,7 @@ public class HomeController : Controller
     {
 
     try {
-        _context.User.Add(user);
+    _context.Users.Add(user);
         await _context.SaveChangesAsync();
         return RedirectToAction("Index");
     }
