@@ -229,23 +229,23 @@
                 <div class="col-lg-8">
                     <div class="card p-4">
                         <p class="text-center mb-4">Laissez-nous vos coordonnées et nous vous recontacterons rapidement pour échanger sur votre projet.</p>
-                        <form>
+                        <form asp-action="Enregistrer" asp-controller="Home" method="post">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label for="Nom_enseigne" class="form-label">Nom de l'enseigne</label>
-                                    <input type="text" class="form-control" id="Nom_enseigne" required>
+                                    <input type="text" class="form-control" asp-for="Nom_enseigne" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="Nom" class="form-label">Votre nom</label>
-                                    <input type="text" class="form-control" id="Nom" required>
+                                    <input type="text" class="form-control" asp-for="Nom" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="Email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="Email" required>
+                                    <input type="email" class="form-control" asp-for="Email" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="Telephone" class="form-label">Téléphone</label>
-                                    <input type="tel" class="form-control" id="Telephone">
+                                    <input type="tel" class="form-control" asp-for="Telephone">
                                 </div>
                                 <div class="col-12 text-center mt-4">
                                     <button type="submit" class="btn btn-primary btn-lg">Envoyer la demande</button>

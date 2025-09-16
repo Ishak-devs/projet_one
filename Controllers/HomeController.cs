@@ -25,6 +25,7 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> Enregistrer(User user)
     {
+        
     if (ModelState.IsValid)
     {
 
