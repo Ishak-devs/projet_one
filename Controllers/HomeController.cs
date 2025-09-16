@@ -19,15 +19,21 @@ public class HomeController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> Enregistrer(User User)
+    public async Task<IActionResult> Enregistrer(User user)
     {
     if (ModelState.IsValid)
     {
-        _context.TaTable.Add(User);
+
+    try {
+        _context.User.Add(user);
         await _context.SaveChangesAsync();
         return RedirectToAction("Index");
     }
-    return View(User);
+    catch {
+        ModelState.AddModelError("", "Erreur lors de la sauvegarde");
+    }
+    }
+    return View(Index);
 }
 
     public IActionResult Privacy()
