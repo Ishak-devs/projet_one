@@ -19,27 +19,28 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        return View(new User());
     }
     
     [HttpPost]
     public async Task<IActionResult> Enregistrer(User user)
     {
-        
-    if (ModelState.IsValid)
-    {
-
-    try {
-    _context.Users.Add(user);
-        await _context.SaveChangesAsync();
-        return RedirectToAction("Index");
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Erreur lors de la sauvegarde");
+            }
+        }
+        // Si erreur, on renvoie la vue Index avec le modèle pour afficher les erreurs
+        return View("Index", user);
     }
-    catch {
-        ModelState.AddModelError("", "Erreur lors de la sauvegarde");
-    }
-    }
-    return View(Index);
-}
 
     public IActionResult Privacy()
     {
