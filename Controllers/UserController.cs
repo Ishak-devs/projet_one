@@ -27,6 +27,7 @@ public class UserController : Controller
 
         try
         {
+            
             // Enregistrement en DB
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -51,6 +52,7 @@ public class UserController : Controller
                         col.Item().Text($"Email : {user.Email}").FontSize(14);
                         col.Item().Text($"Téléphone : {user.Telephone}").FontSize(14);
                         col.Item().Text($"Date de la demande : {DateTime.Now:dd/MM/yyyy HH:mm}").FontSize(12).Italic();
+                        .Fontfamily("Arial");
                     });
                 });
             }).GeneratePdf(filePath);
