@@ -13,8 +13,32 @@
       "PackagePath": "staticwebassets/css/site.css"
     },
     {
+      "Id": "/home/ishak/projet_one/wwwroot/docs/Demande_NavaEngineering_test_20250916114653.pdf",
+      "PackagePath": "staticwebassets/docs/Demande_NavaEngineering_test_20250916114653.pdf"
+    },
+    {
+      "Id": "/home/ishak/projet_one/wwwroot/docs/Demande_a_a_20250916115500.pdf",
+      "PackagePath": "staticwebassets/docs/Demande_a_a_20250916115500.pdf"
+    },
+    {
+      "Id": "/home/ishak/projet_one/wwwroot/docs/Demande_a_a_20250916115937.pdf",
+      "PackagePath": "staticwebassets/docs/Demande_a_a_20250916115937.pdf"
+    },
+    {
       "Id": "/home/ishak/projet_one/wwwroot/docs/Demande_aa_aa_20250916112634.pdf",
       "PackagePath": "staticwebassets/docs/Demande_aa_aa_20250916112634.pdf"
+    },
+    {
+      "Id": "/home/ishak/projet_one/wwwroot/docs/Demande_insta_kouici_20250916115123.pdf",
+      "PackagePath": "staticwebassets/docs/Demande_insta_kouici_20250916115123.pdf"
+    },
+    {
+      "Id": "/home/ishak/projet_one/wwwroot/docs/Demande_insta_test_20250916115351.pdf",
+      "PackagePath": "staticwebassets/docs/Demande_insta_test_20250916115351.pdf"
+    },
+    {
+      "Id": "/home/ishak/projet_one/wwwroot/docs/Demande_z_z_20250916113726.pdf",
+      "PackagePath": "staticwebassets/docs/Demande_z_z_20250916113726.pdf"
     },
     {
       "Id": "/home/ishak/projet_one/wwwroot/favicon.ico",

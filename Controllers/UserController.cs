@@ -5,6 +5,8 @@ using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using System.IO;
+using MailKit.Net.Smtp;
+using MimeKit;
 
 namespace projet_one.Controllers;
 
@@ -55,10 +57,11 @@ public class UserController : Controller
 
             return RedirectToAction("Index", "Home");
         }
-        catch (Exception ex)
-        {
-            ModelState.AddModelError("", $"Erreur : {ex.Message}");
-            return View("Home/Index", user);
-        }
+      catch (Exception ex)
+{
+    ModelState.AddModelError("", $"Erreur : {ex.Message}");
+    return View("~/Views/Home/Index.cshtml", user);
+}
+
     }
 }
