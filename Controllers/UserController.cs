@@ -19,8 +19,10 @@ public class UserController : Controller
         _context = context;
     }
 
+
+    
     [HttpPost]
-    public async Task<IActionResult> Enregistrer(User user)
+    public async Task<IActionResult> Enregistrer_client(User user)
     {
         if (!ModelState.IsValid)
             return View("~/Views/Home/Index.cshtml", user);
@@ -31,6 +33,7 @@ public class UserController : Controller
             // Enregistrement en DB
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
+            TempData["succesmessage"] = "Votre demande a bien été enregistrée.";
 
             // Génération PDF
             QuestPDF.Settings.License = LicenseType.Community;
@@ -51,8 +54,8 @@ public class UserController : Controller
                         col.Item().Text($"Nom du contact : {user.Nom}").FontSize(14);
                         col.Item().Text($"Email : {user.Email}").FontSize(14);
                         col.Item().Text($"Téléphone : {user.Telephone}").FontSize(14);
-                        col.Item().Text($"Date de la demande : {DateTime.Now:dd/MM/yyyy HH:mm}").FontSize(12).Italic();
-                        .Fontfamily("Arial");
+                        col.Item().Text($"Date de la demande : {DateTime.Now:dd/MM/yyyy HH:mm}").FontSize(12);
+
                     });
                 });
             }).GeneratePdf(filePath);

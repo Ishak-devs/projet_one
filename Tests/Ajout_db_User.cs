@@ -9,7 +9,7 @@ namespace projet_one.Tests
     public class UserDbTests
     {
         [Fact]
-        public async Task CanInsertUserIntoDatabase()
+        public async Task Ajout_db_User()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: "TestDb")
