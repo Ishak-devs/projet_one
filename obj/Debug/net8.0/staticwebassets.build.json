@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "feK5VKw0tNqhm47Vp2c2/wKba4ByQlm5RAaeSaSxVIA=",
+  "Hash": "qdQdQkGGcka3eQg6/bXhv7Xoe+2/jkGB1E2L5gTYeEQ=",
   "Source": "projet_one",
   "BasePath": "_content/projet_one",
   "Mode": "Default",
@@ -93,12 +93,12 @@
       "OriginalItemSpec": "wwwroot/css/site.css"
     },
     {
-      "Identity": "/home/ishak/projet_one/wwwroot/docs/Demande_t_t_20250916110006.pdf",
+      "Identity": "/home/ishak/projet_one/wwwroot/docs/Demande_aa_aa_20250916112634.pdf",
       "SourceId": "projet_one",
       "SourceType": "Discovered",
       "ContentRoot": "/home/ishak/projet_one/wwwroot/",
       "BasePath": "_content/projet_one",
-      "RelativePath": "docs/Demande_t_t_20250916110006.pdf",
+      "RelativePath": "docs/Demande_aa_aa_20250916112634.pdf",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -109,26 +109,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/docs/Demande_t_t_20250916110006.pdf"
-    },
-    {
-      "Identity": "/home/ishak/projet_one/wwwroot/docs/Demande_test_test_20250916094955.pdf",
-      "SourceId": "projet_one",
-      "SourceType": "Discovered",
-      "ContentRoot": "/home/ishak/projet_one/wwwroot/",
-      "BasePath": "_content/projet_one",
-      "RelativePath": "docs/Demande_test_test_20250916094955.pdf",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/docs/Demande_test_test_20250916094955.pdf"
+      "OriginalItemSpec": "wwwroot/docs/Demande_aa_aa_20250916112634.pdf"
     },
     {
       "Identity": "/home/ishak/projet_one/wwwroot/favicon.ico",

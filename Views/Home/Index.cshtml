@@ -230,7 +230,7 @@
                 <div class="col-lg-8">
                     <div class="card p-4">
                         <p class="text-center mb-4">Laissez-nous vos coordonnées et nous vous recontacterons rapidement pour échanger sur votre projet.</p>
-                        <form asp-action="Enregistrer" asp-controller="Home" method="post" id="contactForm">
+                        <form asp-action="Enregistrer" asp-controller="User" method="post" id="contactForm">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="row g-3">
                                 <div class="col-md-6">
