@@ -1,10 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
+using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace projet_one.Controllers;
 
 public class SupportController : Controller
 {
+    [Authorize(Roles = "Admin")]
     public IActionResult Index()
     {
         var docsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "docs");
