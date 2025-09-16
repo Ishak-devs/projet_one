@@ -17,6 +17,18 @@ public class HomeController : Controller
     {
         return View();
     }
+    
+    [HttpPost]
+    public async Task<IActionResult> Enregistrer(User User)
+    {
+    if (ModelState.IsValid)
+    {
+        _context.TaTable.Add(User);
+        await _context.SaveChangesAsync();
+        return RedirectToAction("Index");
+    }
+    return View(User);
+}
 
     public IActionResult Privacy()
     {
