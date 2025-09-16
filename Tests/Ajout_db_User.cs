@@ -30,13 +30,14 @@ namespace projet_one.Tests
 
             using (var context = new ApplicationDbContext(options))
             {
-                Assert.Equal(1, await context.Users.CountAsync(), "L'insertion en base a échoué.");
+                Assert.Equal(1, await context.Users.CountAsync());
                 var user = await context.Users.FirstAsync();
                 Assert.Equal("TestEnseigne", user.Nom_enseigne);
                 Assert.Equal("TestNom", user.Nom);
                 Assert.Equal("test@email.com", user.Email);
                 Assert.Equal("0123456789", user.Telephone);
-            
+               
+                System.Diagnostics.Debug.WriteLine("Insertion utilisateur réussie !");
             }
         }
     }
