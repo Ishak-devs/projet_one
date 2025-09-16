@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "druPbVYLbtujciuVnB9pj41r+yqOq8xGydnMgdRxOEo=",
+  "Hash": "1YlNXxAfn5dVp7lFy4b+9VJkaUvONRghC32KOXDBe60=",
   "Source": "projet_one",
   "BasePath": "_content/projet_one",
   "Mode": "Default",
@@ -205,6 +205,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/docs/Demande_NavaEngineering_test_20250916114653.pdf"
+    },
+    {
+      "Identity": "/home/ishak/projet_one/wwwroot/docs/Demande_test_t_20250916133555.pdf",
+      "SourceId": "projet_one",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/ishak/projet_one/wwwroot/",
+      "BasePath": "_content/projet_one",
+      "RelativePath": "docs/Demande_test_t_20250916133555.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/docs/Demande_test_t_20250916133555.pdf"
     },
     {
       "Identity": "/home/ishak/projet_one/wwwroot/docs/Demande_z_z_20250916113726.pdf",

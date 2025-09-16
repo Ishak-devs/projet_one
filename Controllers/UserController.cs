@@ -23,7 +23,7 @@ public class UserController : Controller
     public async Task<IActionResult> Enregistrer(User user)
     {
         if (!ModelState.IsValid)
-            return View("Home/Index", user);
+            return View("~/Views/Home/Index.cshtml", user);
 
         try
         {
@@ -55,7 +55,7 @@ public class UserController : Controller
                 });
             }).GeneratePdf(filePath);
 
-            return RedirectToAction("Index", "Home");
+            return View("~/Views/Home/Index.cshtml", user);
         }
       catch (Exception ex)
 {
