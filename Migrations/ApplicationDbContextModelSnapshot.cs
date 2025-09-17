@@ -205,7 +205,6 @@ namespace projet_one.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Statut")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Telephone")

@@ -12,7 +12,7 @@ using projet_one.Data;
 namespace projet_one.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250917091934_init")]
+    [Migration("20250917115148_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -205,6 +205,9 @@ namespace projet_one.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Statut")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Telephone")

@@ -21,10 +21,17 @@ namespace projet_one.Controllers
             return View("Index", demandes);
         }
 
-        public mise_a_jour_statut()
+        [HttpPost]
+        public async Task<IActionResult> UpdateStatut(string id, [FromBody] string statut)
         {
-            return View(new filtres());
+            var user = await _context.Users.FindAsync(id);
+            if (user == null) return NotFound();
+
+            user.Statut = statut;
+            await _context.SaveChangesAsync();
+            return Ok();
         }
+    }
     }
 
     public class filtres()
@@ -33,4 +40,3 @@ namespace projet_one.Controllers
         public string? email { get; set; }
         public string? telephone { get; set; }      
     }
-}

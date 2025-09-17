@@ -17,6 +17,6 @@ namespace projet_one.Models
         [Required(ErrorMessage = "Le téléphone est obligatoire")]
         [RegularExpression(@"^0\d{9}$", ErrorMessage = "Le téléphone doit commencer par 0 et contenir exactement 10 chiffres")]
         public string Telephone { get; set; }
-        public string Statut { get; set; }
+        public string? Statut { get; set; } = "En attente de traitement";
     }
 }
