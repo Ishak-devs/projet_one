@@ -17,13 +17,22 @@ namespace projet_one.Tests
 
             using (var context = new ApplicationDbContext(options))
             {
+                // Créer les tables Identity en mémoire
+                await context.Database.EnsureCreatedAsync();
+
                 var user = new User
                 {
+                    Id = "test-id-123", // Identity utilise string par défaut
+                    UserName = "testuser", 
                     Nom_enseigne = "TestEnseigne",
                     Nom = "TestNom",
                     Email = "test@email.com",
-                    Telephone = "0123456789"
+                    NormalizedEmail = "TEST@EMAIL.COM", 
+                    Telephone = "0123456789",
+                    EmailConfirmed = true,
+                    SecurityStamp = "security-stamp"
                 };
+
                 context.Users.Add(user);
                 await context.SaveChangesAsync();
             }
@@ -36,7 +45,6 @@ namespace projet_one.Tests
                 Assert.Equal("TestNom", user.Nom);
                 Assert.Equal("test@email.com", user.Email);
                 Assert.Equal("0123456789", user.Telephone);
-               
                 System.Diagnostics.Debug.WriteLine("Insertion utilisateur réussie !");
             }
         }
