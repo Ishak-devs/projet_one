@@ -20,6 +20,11 @@ namespace projet_one.Controllers
             var demandes = await _context.Users.ToListAsync();
             return View("Index", demandes);
         }
+
+        public mise_a_jour_statut()
+        {
+            return View(new filtres());
+        }
     }
 
     public class filtres()
