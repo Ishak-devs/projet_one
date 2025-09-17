@@ -19,7 +19,7 @@ namespace projet_one.Models
         public override string Email { get; set; }
 
         [Required(ErrorMessage = "Le téléphone est obligatoire")]
-        [RegularExpression(@"^\d{10}$", ErrorMessage = "Le téléphone doit contenir exactement 10 chiffres")]
+        [RegularExpression(@"^0\d{9}$", ErrorMessage = "Le téléphone doit commencer par 0 et contenir exactement 10 chiffres")]
         public string Telephone { get; set; }
     }
 }
