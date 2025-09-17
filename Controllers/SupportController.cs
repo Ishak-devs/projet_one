@@ -4,6 +4,7 @@ using projet_one.Data; // pour ApplicationDbContext
 using projet_one.Models; // pour User
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace projet_one.Controllers
 {
