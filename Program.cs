@@ -2,7 +2,7 @@ using projet_one.Data;
 using Microsoft.EntityFrameworkCore; 
 using Microsoft.AspNetCore.Identity;
 using projet_one.Services;
-using
+using projet_one.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
