@@ -1,28 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
-using System.Linq;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using projet_one.Data; // pour ApplicationDbContext
+using projet_one.Models; // pour User
+using System.Threading.Tasks;
 
-
-namespace projet_one.Controllers;
-
-public class SupportController : Controller
+namespace projet_one.Controllers
 {
-
-
-    public IActionResult Index()
+    public class SupportController : Controller
     {
-        var docsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "docs");
+        private readonly ApplicationDbContext _context;
 
-        if (!Directory.Exists(docsPath))
-            Directory.CreateDirectory(docsPath);
+        public SupportController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
-        var files = Directory.GetFiles(docsPath, "*.pdf")
-                             .Select(f => new FileInfo(f))
-                             .OrderByDescending(f => f.CreationTime)
-                             .ToList();
-
-        return View(files);
+        public async Task<IActionResult> Index()
+        {
+            var demandes = await _context.Users.ToListAsync();
+            return View("Index", demandes); 
+        }
     }
 }

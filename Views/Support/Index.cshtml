@@ -1,29 +1,23 @@
-@model List<System.IO.FileInfo>
-@using System.IO
+@model List<projet_one.Models.User>
 
+<h2>Liste des demandes</h2>
 
-<head>
-    <link rel="stylesheet" href="~/css/espace_perso.css" asp-append-version="true" />
-</head>
-
-<div class="espace-container">
-    <h2>Support</h2>
-
-    <div class="files-grid">
-        @foreach (var file in Model)
+<table border="1" cellpadding="5">
+    <thead>
+        <tr>
+            <th>Nom de l'enseigne</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var u in Model)
         {
-            <div class="file-card">
-                <div class="file-icon">📄</div>
-                <div class="file-info">
-                        @{
-
-    var parts = System.IO.Path.GetFileNameWithoutExtension(file.Name).Split('_');
-    string enseigne = parts.Length >= 4 ? parts[3] : file.Name; 
-}
-<a href="~/docs/@file.Name" target="_blank" class="file-link">@enseigne</a>
-                    <span class="file-date">Créé le @file.CreationTime.ToString("dd/MM/yyyy HH:mm:ss")</span>
-                </div>
-            </div>
+            <tr>
+                <td>@u.Nom_enseigne</td>
+                <td>@u.Email</td>
+                <td>@u.Telephone</td>
+            </tr>
         }
-    </div>
-</div>
+    </tbody>
+</table>
