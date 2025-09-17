@@ -31,9 +31,9 @@ public class UserController : Controller
          if (!ModelState.IsValid)
         return View("~/Views/Home/Index.cshtml", user);
 
-        if (await _context.Users.AnyAsync(u => u.Email == user.Email))
+        if (await _context.Users.AnyAsync(u => u.Nom_enseigne == user.Nom_enseigne))
         {
-            ModelState.AddModelError("Email", "Vous avez déja saisi une demande.");
+            TempData["wrong_message"] = "Cette enseigne a déja saisi une demande.";
             return View("~/Views/Home/Index.cshtml", user);
         }
             try

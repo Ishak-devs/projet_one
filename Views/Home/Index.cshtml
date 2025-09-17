@@ -7,12 +7,16 @@
 </head>
 <body>
 
-            @if (TempData["succesmessage"] != null)
+@if (TempData["succesmessage"] is string success)
 {
-    <div id="successMsg" class="alert alert-success mt-3" role="alert">
-        @TempData["succesmessage"]
-    </div>
+    <div class="alert alert-success mt-3" role="alert">@success</div>
 }
+
+@if (TempData["wrong_message"] is string error)
+{
+    <div class="alert alert-danger mt-3" role="alert">@error</div>
+}
+
 
     <div class="container py-4">
         <!-- Hero Section -->
