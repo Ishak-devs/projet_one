@@ -17,6 +17,10 @@
     <div class="alert alert-danger mt-3" role="alert">@error</div>
 }
 
+@if (TempData["email_used"] is string error2)
+{
+    <div class="alert alert-danger mt-3" role="alert">@error2</div>
+}
 
     <div class="container py-4">
         <!-- Hero Section -->
