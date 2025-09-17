@@ -115,15 +115,7 @@ public class UserController : Controller
                 grid.Item().Component(new InfoField("Téléphone", user.Telephone));
             });
 
-            // Section Détails de la Demande
-            column.Item().PaddingTop(20).Element(e => ComposeSection(e, "DÉTAILS DE LA DEMANDE", Colors.Green.Darken3));
             
-            column.Item().PaddingTop(10).Grid(grid =>
-            {
-                grid.Columns(2);
-                grid.Item().Component(new InfoField("Date de la demande", DateTime.Now.ToString("dd/MM/yyyy HH:mm")));
-                grid.Item().Component(new InfoField("Référence", $"REF-{DateTime.Now:yyyyMMdd}-{user.Id}"));
-            });
         });
     }
 

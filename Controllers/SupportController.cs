@@ -18,7 +18,6 @@ public class SupportController : Controller
         if (!Directory.Exists(docsPath))
             Directory.CreateDirectory(docsPath);
 
-        // Récupère tous les fichiers PDF
         var files = Directory.GetFiles(docsPath, "*.pdf")
                              .Select(f => new FileInfo(f))
                              .OrderByDescending(f => f.CreationTime)
