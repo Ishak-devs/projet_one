@@ -9,7 +9,7 @@ namespace projet_one.Services
         public static async Task CreateRoles(IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            string[] roles = { "Admin", "Utilisateur" };
+            string[] roles = { "Admin" };
 
             foreach (var role in roles)
             {

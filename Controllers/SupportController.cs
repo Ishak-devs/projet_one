@@ -16,8 +16,6 @@ namespace projet_one.Controllers
         {
             _context = context;
         }
-
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var demandes = await _context.Users.ToListAsync();
