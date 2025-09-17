@@ -11,7 +11,7 @@ public class SupportController : Controller
 {
 
 
-    public IActionResult Espace_perso()
+    public IActionResult Index()
     {
         var docsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "docs");
 
