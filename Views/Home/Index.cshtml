@@ -6,6 +6,22 @@
     <link rel="stylesheet" href="~/css/acceuil.css">
 </head>
 <body>
+
+@if (TempData["succesmessage"] is string success)
+{
+    <div class="alert alert-success mt-3" role="alert">@success</div>
+}
+
+@if (TempData["wrong_message"] is string error)
+{
+    <div class="alert alert-danger mt-3" role="alert">@error</div>
+}
+
+@if (TempData["email_used"] is string error2)
+{
+    <div class="alert alert-danger mt-3" role="alert">@error2</div>
+}
+
     <div class="container py-4">
         <!-- Hero Section -->
         <section class="hero-section text-center">
@@ -230,7 +246,7 @@
                 <div class="col-lg-8">
                     <div class="card p-4">
                         <p class="text-center mb-4">Laissez-nous vos coordonnées et nous vous recontacterons rapidement pour échanger sur votre projet.</p>
-                        <form asp-action="Enregistrer" asp-controller="User" method="post" id="contactForm">
+                        <form asp-action="Enregistrer_client" asp-controller="User" method="post" id="contactForm">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="row g-3">
         <div class="col-md-6">
@@ -239,18 +255,13 @@
             <span asp-validation-for="Nom_enseigne" class="text-danger"></span>
         </div>
         <div class="col-md-6">
-            <label for="Nom" class="form-label">Votre nom</label>
-            <input type="text" class="form-control" asp-for="Nom" placeholder="Ex : Jean Dupont" required>
-            <span asp-validation-for="Nom" class="text-danger"></span>
-        </div>
-        <div class="col-md-6">
             <label for="Email" class="form-label">Email</label>
             <input type="email" class="form-control" asp-for="Email" placeholder="exemple@mail.com" required>
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <div class="col-md-6">
             <label for="Telephone" class="form-label">Téléphone</label>
-            <input type="tel" class="form-control" asp-for="Telephone" placeholder="06 12 34 56 78" maxlength="10" required>
+            <input type="tel" class="form-control" asp-for="Telephone" placeholder="0612345678" maxlength="10" required>
             <span asp-validation-for="Telephone" class="text-danger"></span>
         </div>
         <div class="col-12 text-center mt-4">
@@ -258,9 +269,8 @@
                 <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                 <span id="btnText">Envoyer la demande</span>
             </button>
-            <div id="successMsg" class="alert alert-success mt-3 d-none" role="alert">
-                Merci pour votre message ! Nous vous contacterons très rapidement.
-            </div>
+
+
         </div>
     </div>
 </form>
@@ -278,6 +288,17 @@
                             btnText.textContent = 'Envoi en cours...';
                         });
                         </script>
+                            <script>
+
+        var successMsg = document.getElementById("successMsg");
+
+
+        if (successMsg) {
+            setTimeout(function() {
+                successMsg.classList.add("d-none");
+            }, 5000);
+        }
+    </script>
                     </div>
                 </div>
             </div>

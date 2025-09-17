@@ -1,23 +1,38 @@
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
+using Microsoft.EntityFrameworkCore;
+using projet_one.Data; // pour ApplicationDbContext
+using projet_one.Models; // pour User
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
-namespace projet_one.Controllers;
-
-public class SupportController : Controller
+namespace projet_one.Controllers
 {
-    public IActionResult Index()
+    public class SupportController : Controller
     {
-        var docsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "docs");
+        private readonly ApplicationDbContext _context;
 
-        if (!Directory.Exists(docsPath))
-            Directory.CreateDirectory(docsPath);
+        public SupportController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
-        // Récupère tous les fichiers PDF
-        var files = Directory.GetFiles(docsPath, "*.pdf")
-                             .Select(f => new FileInfo(f))
-                             .OrderByDescending(f => f.CreationTime)
-                             .ToList();
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Index()
+        {
+            var demandes = await _context.Users.ToListAsync();
+            return View("Index", demandes);
+        }
 
-        return View(files); 
+        [HttpPost]
+        public async Task<IActionResult> UpdateStatut(string id, [FromBody] string statut)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null) return NotFound();
+
+            user.Statut = statut;
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
     }
-}
+    }
+
