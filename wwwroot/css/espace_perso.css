@@ -1,0 +1,58 @@
+.espace-container {
+    max-width: 900px;
+    margin: 20px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.files-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.file-card {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.file-icon {
+    font-size: 32px;
+}
+
+.file-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.file-link {
+    font-weight: bold;
+    color: #2980b9;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.file-link:hover {
+    text-decoration: underline;
+}
+
+.file-date {
+    font-size: 0.85em;
+    color: #7f8c8d;
+}
