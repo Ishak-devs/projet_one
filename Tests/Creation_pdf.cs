@@ -14,14 +14,13 @@ public class PdfTests
         var user = new User
         {
             Nom_enseigne = "TestEnseigne",
-            Nom = "Ishak",
             Email = "ishak@test.com",
             Telephone = "0123456789"
         };
 
         QuestPDF.Settings.License = LicenseType.Community;
 
-        var fileName = $"Test_{user.Nom_enseigne}_{user.Nom}.pdf";
+        var fileName = $"Test_{user.Nom_enseigne}.pdf";
         var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "docs", fileName);
         Directory.CreateDirectory(Path.GetDirectoryName(filePath));
 

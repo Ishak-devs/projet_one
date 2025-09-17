@@ -180,10 +180,6 @@ namespace projet_one.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Nom")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Nom_enseigne")
                         .IsRequired()
                         .HasColumnType("longtext");

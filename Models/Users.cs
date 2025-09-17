@@ -9,10 +9,6 @@ namespace projet_one.Models
         [MinLength(2, ErrorMessage = "Le nom de l'enseigne doit contenir au moins 2 caractères")]
         public string Nom_enseigne { get; set; }
 
-        [Required(ErrorMessage = "Le prénom est obligatoire")]
-        [MinLength(2, ErrorMessage = "Le prénom doit contenir au moins 2 caractères")]
-        public string Nom { get; set; }
-
         [Required(ErrorMessage = "L'email est obligatoire")]
         [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
             ErrorMessage = "Email invalide : doit contenir un @ et un point")]

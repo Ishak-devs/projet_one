@@ -25,7 +25,6 @@ namespace projet_one.Tests
                     Id = "test-id-123", // Identity utilise string par défaut
                     UserName = "testuser", 
                     Nom_enseigne = "TestEnseigne",
-                    Nom = "TestNom",
                     Email = "test@email.com",
                     NormalizedEmail = "TEST@EMAIL.COM", 
                     Telephone = "0123456789",
@@ -42,7 +41,6 @@ namespace projet_one.Tests
                 Assert.Equal(1, await context.Users.CountAsync());
                 var user = await context.Users.FirstAsync();
                 Assert.Equal("TestEnseigne", user.Nom_enseigne);
-                Assert.Equal("TestNom", user.Nom);
                 Assert.Equal("test@email.com", user.Email);
                 Assert.Equal("0123456789", user.Telephone);
                 System.Diagnostics.Debug.WriteLine("Insertion utilisateur réussie !");

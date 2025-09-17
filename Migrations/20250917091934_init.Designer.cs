@@ -12,8 +12,8 @@ using projet_one.Data;
 namespace projet_one.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250917081953_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250917091934_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -182,10 +182,6 @@ namespace projet_one.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Nom")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.Property<string>("Nom_enseigne")
                         .IsRequired()
