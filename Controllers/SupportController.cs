@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace projet_one.Controllers;
@@ -9,6 +10,7 @@ namespace projet_one.Controllers;
 public class SupportController : Controller
 {
 
+    [Authorize(Roles = "Admin")]
     public IActionResult Espace_perso()
     {
         var docsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "docs");
@@ -22,6 +24,6 @@ public class SupportController : Controller
                              .OrderByDescending(f => f.CreationTime)
                              .ToList();
 
-        return View(files); 
+        return View(files);
     }
 }
