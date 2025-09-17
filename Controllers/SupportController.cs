@@ -18,7 +18,14 @@ namespace projet_one.Controllers
         public async Task<IActionResult> Index()
         {
             var demandes = await _context.Users.ToListAsync();
-            return View("Index", demandes); 
+            return View("Index", demandes);
         }
+    }
+
+    public class filtres()
+    {
+        public string? nom_enseigne { get; set; }
+        public string? email { get; set; }
+        public string? telephone { get; set; }      
     }
 }
