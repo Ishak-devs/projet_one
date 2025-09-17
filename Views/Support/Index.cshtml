@@ -16,6 +16,15 @@
         </div>
 
         <div class="admin-card">
+
+        <div id="filtre-date" class="mb-3 d-flex gap-2">
+    <label>Du</label>
+    <input type="date" id="dateDebut" class="form-control" />
+    <label>Au</label>
+    <input type="date" id="dateFin" class="form-control" />
+</div>
+
+
             <div class="table-container">
                 <table class="table table-hover mb-0">
                     <thead>
@@ -29,7 +38,7 @@
                     <tbody>
                         @foreach(var u in Model)
                             {
-                                <tr>
+                                <tr data-date="@u.DateDemande.ToString("yyyy-MM-dd")">
                                     <td>@u.Nom_enseigne</td>
                                     <td>@u.Email</td>
                                     <td>@u.Telephone</td>
@@ -74,5 +83,29 @@
             alert("Erreur lors de la mise à jour");
         }
     }
+
+    const dateDebut = document.getElementById("dateDebut");
+    const dateFin = document.getElementById("dateFin");
+
+    function filtrerDates() {
+        const debut = dateDebut.value ? new Date(dateDebut.value) : null;
+        const fin = dateFin.value ? new Date(dateFin.value) : null;
+
+        const rows = document.querySelectorAll("table tbody tr");
+
+        rows.forEach(row => {
+            const rowDate = new Date(row.getAttribute("data-date"));
+
+            let afficher = true;
+            if (debut && rowDate < debut) afficher = false;
+            if (fin && rowDate > fin) afficher = false;
+
+            row.style.display = afficher ? "" : "none";
+        });
+    }
+
+    dateDebut.addEventListener("change", filtrerDates);
+    dateFin.addEventListener("change", filtrerDates);
+
 </script>
 

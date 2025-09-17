@@ -13,6 +13,8 @@ namespace projet_one.Models
         [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
             ErrorMessage = "Email invalide : doit contenir un @ et un point")]
         public override string Email { get; set; }
+        public DateTime DateDemande { get; set; } = DateTime.Now;
+
 
         [Required(ErrorMessage = "Le téléphone est obligatoire")]
         [RegularExpression(@"^0\d{9}$", ErrorMessage = "Le téléphone doit commencer par 0 et contenir exactement 10 chiffres")]
