@@ -100,7 +100,7 @@ namespace projet_one.Tests
         public async Task EnvoyerEmail_Test()
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Engenering", "contact.kcc0@gmail.com")); 
+            message.From.Add(new MailboxAddress("SupportEnginering", "contact.kcc0@gmail.com")); 
             message.To.Add(new MailboxAddress("Admin", "kouicicontact@yahoo.com"));        
             message.Subject = "Test d'envoi de mail";
             message.Body = new TextPart("plain")
