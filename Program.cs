@@ -34,7 +34,8 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    await GestionRole.CreateRoles(services);
+    await GestionRole.CreateRoles_and_user(services);
+    
 
 }
 
@@ -56,5 +57,6 @@ app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();
