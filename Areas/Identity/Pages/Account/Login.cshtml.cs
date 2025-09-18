@@ -20,6 +20,8 @@ namespace projet_one.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
+
+
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
@@ -87,6 +89,7 @@ namespace projet_one.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            ViewData["HideHeader"] = true;  
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
