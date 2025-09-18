@@ -308,6 +308,10 @@
 
                         <script>
                         document.getElementById('contactForm').addEventListener('submit', function(e) {
+                            var form = this;
+    if (!form.checkValidity()) {
+        return;
+    }
                             var btn = document.getElementById('submitBtn');
                             var spinner = document.getElementById('spinner');
                             var btnText = document.getElementById('btnText');
@@ -326,7 +330,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if(el) setTimeout(() => el.classList.add("d-none"), 5000);
     });
 });
-
     </script>
                     </div>
                 </div>
