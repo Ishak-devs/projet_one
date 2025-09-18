@@ -32,12 +32,12 @@
                 </div>
 
                 <!-- Remember Me -->
-                <div class="form-check mb-3">
+                @*<div class="form-check mb-3">
                     <input class="form-check-input" asp-for="Input.RememberMe" />
                     <label class="form-check-label" asp-for="Input.RememberMe">
                         @Html.DisplayNameFor(m => m.Input.RememberMe)
                     </label>
-                </div>
+                </div>*@
 
                 <!-- Submit -->
                 <div class="d-grid mb-3">
@@ -45,11 +45,12 @@
                 </div>
 
                 <!-- Links -->
-                <div class="text-center">
+                @* <div class="text-center">
                     <p><a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a></p>
                     <p><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a></p>
                     <p><a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a></p>
-                </div>
+                </div>*@
+               
             </form>
         </section>
     </div>

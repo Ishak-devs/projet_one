@@ -292,13 +292,13 @@
                             <script>
 
         var successMsg = document.getElementById("successMsg");
+        var wrong_message = document.getElementById("wrong_message")
+        var email_used = document.getElementById("email_used")
 
+        [successMsg, wrong_message, email_used].forEach(el => {
+    if(el) setTimeout(() => el.classList.add("d-none"), 5000);
+});
 
-        if (successMsg) {
-            setTimeout(function() {
-                successMsg.classList.add("d-none");
-            }, 5000);
-        }
     </script>
                     </div>
                 </div>
