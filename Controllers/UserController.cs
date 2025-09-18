@@ -48,13 +48,34 @@ public class UserController : Controller
             // Enregistrement en DB
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
+
+            // Envoi de mail après enregistrement
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Engenering", "kouicicontact@yahoo.com")); // expéditeur
+            message.To.Add(new MailboxAddress("Admin", "contact.kcc0@gmail.com"));    // destinataire
+            message.Subject = "Nouvelle demande enregistrée";
+            message.Body = new TextPart("plain")
+
+            {
+                Text = $"Nouvelle demande de l'enseigne : {user.Nom_enseigne}\nEmail : {user.Email}\nTéléphone : {user.Telephone}"
+            };
+
+            using var client = new SmtpClient();
+            await client.ConnectAsync("smtp.mail.yahoo.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+
+            await client.AuthenticateAsync("kouicicontact@yahoo.com", "ceffejrjnorjrlic"); 
+            await client.SendAsync(message);
+            await client.DisconnectAsync(true);
+
             TempData["succesmessage"] = "Votre demande a bien été enregistrée.";
             return RedirectToAction("Index", "Home");
-}
+        }
+        
         catch (Exception ex)
         {
             TempData["wrong_message"] = "Erreur lors de l'enregistrement : " + ex.Message;
             return RedirectToAction("Index", "Home");
         }
+        
     }
 }
