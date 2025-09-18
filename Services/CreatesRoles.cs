@@ -24,7 +24,7 @@ namespace projet_one.Services
             string adminEmail = "admin@co.com";
             string adminPassword = "Admin123!";
             string adminEnseigne = "Non renseigné";
-            string Adminphone = "NOn renseigné";
+            string Adminphone = "Non renseigné";
 
 
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
@@ -35,7 +35,6 @@ namespace projet_one.Services
                 await userManager.CreateAsync(adminUser, adminPassword); // le mdp est hashé automatiquement
                 await userManager.AddToRoleAsync(adminUser, "Admin");
             }
-            
 
         }
     }

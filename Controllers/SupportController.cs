@@ -5,6 +5,7 @@ using projet_one.Models; // pour User
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
 
 
 namespace projet_one.Controllers
@@ -37,6 +38,12 @@ namespace projet_one.Controllers
             await _context.SaveChangesAsync();
             return Ok();
         }
+
+        public async Task<IActionResult> Deconnexion()
+        {
+            await HttpContext.SignOutAsync();
+            return View("Index");
+        }
     }
-    }
+}
 
