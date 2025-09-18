@@ -56,5 +56,10 @@ namespace projet_one.Tests
                 Assert.Equal("0123456789", user.Telephone);
             }
         }
+        [Fact]
+        public async Task Login_admin()
+        {
+            
+        }
     }
 }
