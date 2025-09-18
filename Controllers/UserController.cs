@@ -59,19 +59,20 @@ public class UserController : Controller
             {
                 Text = $"Nouvelle demande de l'enseigne : {user.Nom_enseigne}\nEmail : {user.Email}\nTéléphone : {user.Telephone}"
             };
-try
-{
+            try
+            {
                 using var client = new SmtpClient();
                 await client.ConnectAsync("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
-                await client.AuthenticateAsync("contact.kcc0@gmail.com", "ldmljnlqdvxlxefy"); 
+                await client.AuthenticateAsync("contact.kcc0@gmail.com", "ldmljnlqdvxlxefy");
                 await client.SendAsync(message);
                 await client.DisconnectAsync(true);
-}
-catch (Exception ex)
-{
-    Console.WriteLine("SMTP ERROR: " + ex.Message);
-    throw;
-}
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine("SMTP ERROR: " + ex.Message);
+                throw;
+            }
 
         }
         
