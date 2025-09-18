@@ -1,8 +1,13 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 using projet_one.Data;
 using projet_one.Models;
+using projet_one.Services;
 using Xunit;
+
 
 namespace projet_one.Tests
 {
@@ -56,5 +61,36 @@ namespace projet_one.Tests
                 Assert.Equal("0123456789", user.Telephone);
             }
         }
+        [Fact]
+public async Task Login_admin()
+{
+    var services = new ServiceCollection();
+    services.AddLogging();
+    services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseMySql(
+            "Server=localhost;Database=projet_one_db;User=root;Password=;",
+            new MySqlServerVersion(new Version(8, 0, 43))
+        )
+    );
+    services.AddIdentity<User, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+
+    var serviceProvider = services.BuildServiceProvider();
+
+    // Assure que l'admin existe
+    await GestionRole.CreateRoles_and_user(serviceProvider);
+
+    var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
+
+    // Récupère l'admin
+    var adminUser = await userManager.FindByEmailAsync("admin@co.com");
+
+    // Vérifie le mot de passe
+    bool isPasswordCorrect = await userManager.CheckPasswordAsync(adminUser, "Admin123!");
+
+    Assert.True(isPasswordCorrect, "Le mot de passe de l'admin ne correspond pas !");
+}
+
     }
 }
