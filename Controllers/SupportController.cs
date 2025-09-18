@@ -41,8 +41,8 @@ namespace projet_one.Controllers
 
         public async Task<IActionResult> Deconnexion()
         {
-            await HttpContext.SignOutAsync();
-            return View("Index");
+            await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
+            return RedirectToPage("/Account/Login", new { area = "Identity" });
         }
     }
 }
