@@ -61,44 +61,35 @@ namespace projet_one.Tests
                 Assert.Equal("0123456789", user.Telephone);
             }
         }
-
         [Fact]
 public async Task Login_admin()
 {
-    var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-        .UseMySql(
+    var services = new ServiceCollection();
+    services.AddLogging();
+    services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseMySql(
             "Server=localhost;Database=projet_one_db;User=root;Password=;",
             new MySqlServerVersion(new Version(8, 0, 43))
         )
-        .Options;
+    );
+    services.AddIdentity<User, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
 
-    using (var context = new ApplicationDbContext(options))
-    {
-        await context.Database.EnsureCreatedAsync();
+    var serviceProvider = services.BuildServiceProvider();
 
-        var user = new User
-        {
-            Id = "admin-id-123",
-            UserName = "adminuser",
-            Email = "admin@test.com",
-            Nom_enseigne = "AdminEnseigne",
-            Telephone = "0123456789",
-            SecurityStamp = Guid.NewGuid().ToString()
-        };
+    // Assure que l'admin existe
+    await GestionRole.CreateRoles_and_user(serviceProvider);
 
-        var password = "Admin123!";
-        var hasher = new Microsoft.AspNetCore.Identity.PasswordHasher<User>();
-        user.PasswordHash = hasher.HashPassword(user, password);
+    var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
 
-        context.Users.Add(user);
-        await context.SaveChangesAsync();
+    // Récupère l'admin
+    var adminUser = await userManager.FindByEmailAsync("admin@co.com");
 
-        // Vérification
-        var savedUser = await context.Users.FirstOrDefaultAsync(u => u.Id == "admin-id-123");
-        Assert.NotNull(savedUser);
-        var result = hasher.VerifyHashedPassword(savedUser, savedUser.PasswordHash, password);
-        Assert.Equal(Microsoft.AspNetCore.Identity.PasswordVerificationResult.Success, result);
-    }
+    // Vérifie le mot de passe
+    bool isPasswordCorrect = await userManager.CheckPasswordAsync(adminUser, "Admin123!");
+
+    Assert.True(isPasswordCorrect, "Le mot de passe de l'admin ne correspond pas !");
 }
 
     }
