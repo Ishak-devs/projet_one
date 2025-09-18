@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
+
 namespace projet_one.Controllers
 {
     public class SupportController : Controller
@@ -16,8 +17,11 @@ namespace projet_one.Controllers
         {
             _context = context;
         }
+
+
         public async Task<IActionResult> Index()
         {
+            ViewData["HideHeader"] = true;
             var demandes = await _context.Users.ToListAsync();
             return View("Index", demandes);
         }
