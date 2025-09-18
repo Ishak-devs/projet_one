@@ -7,6 +7,8 @@ using projet_one.Data;
 using projet_one.Models;
 using projet_one.Services;
 using Xunit;
+using MailKit.Net.Smtp;
+using MimeKit;
 
 
 namespace projet_one.Tests
@@ -62,35 +64,62 @@ namespace projet_one.Tests
             }
         }
         [Fact]
-public async Task Login_admin()
-{
-    var services = new ServiceCollection();
-    services.AddLogging();
-    services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseMySql(
-            "Server=localhost;Database=projet_one_db;User=root;Password=;",
-            new MySqlServerVersion(new Version(8, 0, 43))
-        )
-    );
-    services.AddIdentity<User, IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
+        public async Task Login_admin()
+        {
+            var services = new ServiceCollection();
+            services.AddLogging();
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseMySql(
+                    "Server=localhost;Database=projet_one_db;User=root;Password=;",
+                    new MySqlServerVersion(new Version(8, 0, 43))
+                )
+            );
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
-    var serviceProvider = services.BuildServiceProvider();
+            var serviceProvider = services.BuildServiceProvider();
 
-    // Assure que l'admin existe
-    await GestionRole.CreateRoles_and_user(serviceProvider);
+            // Assure que l'admin existe
+            await GestionRole.CreateRoles_and_user(serviceProvider);
 
-    var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
 
-    // Récupère l'admin
-    var adminUser = await userManager.FindByEmailAsync("admin@co.com");
+            // Récupère l'admin
+            var adminUser = await userManager.FindByEmailAsync("admin@co.com");
 
-    // Vérifie le mot de passe
-    bool isPasswordCorrect = await userManager.CheckPasswordAsync(adminUser, "Admin123!");
+            // Vérifie le mot de passe
+            bool isPasswordCorrect = await userManager.CheckPasswordAsync(adminUser, "Admin123!");
 
-    Assert.True(isPasswordCorrect, "Le mot de passe de l'admin ne correspond pas !");
-}
+            Assert.True(isPasswordCorrect, "Le mot de passe de l'admin ne correspond pas !");
+        }
+
+  [Fact]
+        public async Task EnvoyerEmail_Test()
+        {
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Engenering", "kouicicontact@yahoo.com")); 
+            message.To.Add(new MailboxAddress("Admin", "contact.kcc0@gmail.com"));        
+            message.Subject = "Test d'envoi de mail";
+            message.Body = new TextPart("plain")
+            {
+                Text = $"Ceci est un test d'envoi de mail depuis dotnet test - {DateTime.Now}"
+            };
+
+            try
+            {
+                using var client = new SmtpClient();
+                await client.ConnectAsync("smtp.mail.yahoo.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
+                await client.AuthenticateAsync("kouicicontact@yahoo.com", "ceffejrjnorjrlic"); 
+                await client.SendAsync(message);
+                await client.DisconnectAsync(true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("SMTP ERROR: " + ex.Message);
+                throw; 
+            }
+        }
 
     }
 }

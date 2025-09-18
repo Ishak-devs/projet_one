@@ -59,16 +59,20 @@ public class UserController : Controller
             {
                 Text = $"Nouvelle demande de l'enseigne : {user.Nom_enseigne}\nEmail : {user.Email}\nTéléphone : {user.Telephone}"
             };
+try
+{
+    using var client = new SmtpClient();
+    await client.ConnectAsync("smtp.mail.yahoo.com", 456, MailKit.Security.SecureSocketOptions.StartTls);
+    await client.AuthenticateAsync("kouicicontact@yahoo.com", "ceffejrjnorjrlic"); 
+    await client.SendAsync(message);
+    await client.DisconnectAsync(true);
+}
+catch (Exception ex)
+{
+    Console.WriteLine("SMTP ERROR: " + ex.Message);
+    throw;
+}
 
-            using var client = new SmtpClient();
-            await client.ConnectAsync("smtp.mail.yahoo.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-
-            await client.AuthenticateAsync("kouicicontact@yahoo.com", "ceffejrjnorjrlic"); 
-            await client.SendAsync(message);
-            await client.DisconnectAsync(true);
-
-            TempData["succesmessage"] = "Votre demande a bien été enregistrée.";
-            return RedirectToAction("Index", "Home");
         }
         
         catch (Exception ex)
@@ -76,6 +80,6 @@ public class UserController : Controller
             TempData["wrong_message"] = "Erreur lors de l'enregistrement : " + ex.Message;
             return RedirectToAction("Index", "Home");
         }
-        
+        return View("Index", "Home");
     }
 }
