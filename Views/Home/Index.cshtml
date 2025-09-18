@@ -251,17 +251,17 @@
                         <form asp-action="Enregistrer_client" asp-controller="User" method="post" id="contactForm">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="row g-3">
-        <div class="col-md-6">
+        <div class="col-12">
             <label for="Nom_enseigne" class="form-label">Nom de l'enseigne</label>
             <input type="text" class="form-control" asp-for="Nom_enseigne" placeholder="Ex : MonEntreprise" required>
             <span asp-validation-for="Nom_enseigne" class="text-danger"></span>
         </div>
-        <div class="col-md-6">
+        <div class="col-12">
             <label for="Email" class="form-label">Email</label>
             <input type="email" class="form-control" asp-for="Email" placeholder="exemple@mail.com" required>
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
-        <div class="col-md-6">
+        <div class="col-12">
             <label for="Telephone" class="form-label">Téléphone</label>
             <input type="tel" class="form-control" asp-for="Telephone" placeholder="0612345678" maxlength="10" required>
             <span asp-validation-for="Telephone" class="text-danger"></span>
