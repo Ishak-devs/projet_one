@@ -94,12 +94,14 @@ namespace projet_one.Tests
             Assert.True(isPasswordCorrect, "Le mot de passe de l'admin ne correspond pas !");
         }
 
-  [Fact]
+
+
+        [Fact]
         public async Task EnvoyerEmail_Test()
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Engenering", "kouicicontact@yahoo.com")); 
-            message.To.Add(new MailboxAddress("Admin", "contact.kcc0@gmail.com"));        
+            message.From.Add(new MailboxAddress("Engenering", "contact.kcc0@gmail.com")); 
+            message.To.Add(new MailboxAddress("Admin", "kouicicontact@yahoo.com"));        
             message.Subject = "Test d'envoi de mail";
             message.Body = new TextPart("plain")
             {
@@ -109,8 +111,8 @@ namespace projet_one.Tests
             try
             {
                 using var client = new SmtpClient();
-                await client.ConnectAsync("smtp.mail.yahoo.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
-                await client.AuthenticateAsync("kouicicontact@yahoo.com", "ceffejrjnorjrlic"); 
+                await client.ConnectAsync("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
+                await client.AuthenticateAsync("contact.kcc0@gmail.com", "ldmljnlqdvxlxefy"); 
                 await client.SendAsync(message);
                 await client.DisconnectAsync(true);
             }

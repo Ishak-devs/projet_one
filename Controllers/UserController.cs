@@ -51,8 +51,8 @@ public class UserController : Controller
 
             // Envoi de mail après enregistrement
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Engenering", "kouicicontact@yahoo.com")); // expéditeur
-            message.To.Add(new MailboxAddress("Admin", "contact.kcc0@gmail.com"));    // destinataire
+            message.From.Add(new MailboxAddress("Engenering", "contact.kcc0@gmail.com")); // expéditeur
+            message.To.Add(new MailboxAddress("Admin", "kouicicontact@yahoo.com"));    // destinataire
             message.Subject = "Nouvelle demande enregistrée";
             message.Body = new TextPart("plain")
 
@@ -61,11 +61,11 @@ public class UserController : Controller
             };
 try
 {
-    using var client = new SmtpClient();
-    await client.ConnectAsync("smtp.mail.yahoo.com", 456, MailKit.Security.SecureSocketOptions.StartTls);
-    await client.AuthenticateAsync("kouicicontact@yahoo.com", "ceffejrjnorjrlic"); 
-    await client.SendAsync(message);
-    await client.DisconnectAsync(true);
+                using var client = new SmtpClient();
+                await client.ConnectAsync("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
+                await client.AuthenticateAsync("contact.kcc0@gmail.com", "ldmljnlqdvxlxefy"); 
+                await client.SendAsync(message);
+                await client.DisconnectAsync(true);
 }
 catch (Exception ex)
 {
@@ -80,6 +80,6 @@ catch (Exception ex)
             TempData["wrong_message"] = "Erreur lors de l'enregistrement : " + ex.Message;
             return RedirectToAction("Index", "Home");
         }
-        return View("Index", "Home");
+        return RedirectToAction("Index", "Home");
     }
 }
