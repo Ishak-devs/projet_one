@@ -66,6 +66,8 @@ public class UserController : Controller
                 await client.AuthenticateAsync("contact.kcc0@gmail.com", "ldmljnlqdvxlxefy");
                 await client.SendAsync(message);
                 await client.DisconnectAsync(true);
+
+                TempData["succesmessage"] = "Votre demande a été envoyée avec succès !";
             }
 
             catch (Exception ex)
