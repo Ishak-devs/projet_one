@@ -35,7 +35,6 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     await GestionRole.CreateRoles_and_user(services);
-    
 
 }
 

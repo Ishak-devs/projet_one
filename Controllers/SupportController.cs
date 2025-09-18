@@ -19,7 +19,7 @@ namespace projet_one.Controllers
         }
 
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             ViewData["HideHeader"] = true;
