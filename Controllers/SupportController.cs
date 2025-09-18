@@ -19,14 +19,20 @@ namespace projet_one.Controllers
             _context = context;
         }
 
-
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Index()
-        {
-            ViewData["HideHeader"] = true;
-            var demandes = await _context.Users.ToListAsync();
-            return View("Index", demandes);
-        }
+public async Task<IActionResult> Index()
+{
+    ViewData["HideHeader"] = true;
+
+    var demandes = await _context.Users
+        .Where(u => u.Nom_enseigne != "AdminEnseigne"
+                 && u.Email != "admin@co.com"
+                 && u.Nom_enseigne != "TestEnseigne")
+        .ToListAsync();
+
+    return View("Index", demandes);
+}
+
 
         [HttpPost]
         public async Task<IActionResult> UpdateStatut(string id, [FromBody] string statut)

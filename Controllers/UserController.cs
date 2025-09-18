@@ -51,7 +51,7 @@ public class UserController : Controller
 
             // Envoi de mail après enregistrement
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Engenering", "contact.kcc0@gmail.com")); // expéditeur
+            message.From.Add(new MailboxAddress("SupportEngineering", "contact.kcc0@gmail.com")); // expéditeur
             message.To.Add(new MailboxAddress("Admin", "kouicicontact@yahoo.com"));    // destinataire
             message.Subject = "Nouvelle demande enregistrée";
             message.Body = new TextPart("plain")

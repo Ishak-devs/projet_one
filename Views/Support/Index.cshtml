@@ -1,4 +1,5 @@
 @model List<projet_one.Models.User>
+@using System.Text.RegularExpressions
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -38,7 +39,7 @@
                                 <tr data-date="@u.DateDemande.ToString("yyyy-MM-dd")">
                                     <td>@u.Nom_enseigne</td>
                                     <td>@u.Email</td>
-                                    <td>@u.Telephone</td>
+                                    <td>@Regex.Replace(u.Telephone ?? "", @"(\d{2})(?=\d)", "$1.")</td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center align-items-center">
                                             <input type="text" class="form-control form-control-sm statut-input me-2" value="@u.Statut" id="statut-@u.Id" />

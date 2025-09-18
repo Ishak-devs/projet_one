@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 using projet_one.Services;
 using projet_one.Models;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
