@@ -29,18 +29,18 @@ public class UserController : Controller
     public async Task<IActionResult> Enregistrer_client(User user)
     {
         if (!ModelState.IsValid)
-            return View("~/Views/Home/Index.cshtml", user);
+            return RedirectToAction("Index", "Home");
 
         if (await _context.Users.AnyAsync(u => u.Nom_enseigne == user.Nom_enseigne))
         {
             TempData["wrong_message"] = "Cette enseigne a déja saisi une demande.";
-            return View("~/Views/Home/Index.cshtml", user);
+            return RedirectToAction("Index", "Home");
         }
 
         if (await _context.Users.AnyAsync(u => u.Email == user.Email))
         {
             TempData["email_used"] = "Une personne avec cet Email a déja envoyé une demande.";
-            return View("~/Views/Home/Index.cshtml", user);
+            return RedirectToAction("Index", "Home");
         }
 
         try
@@ -49,12 +49,12 @@ public class UserController : Controller
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             TempData["succesmessage"] = "Votre demande a bien été enregistrée.";
-            return View("~/Views/Home/Index.cshtml", user);
+            return RedirectToAction("Index", "Home");
 }
         catch (Exception ex)
         {
             TempData["wrong_message"] = "Erreur lors de l'enregistrement : " + ex.Message;
-            return View("~/Views/Home/Index.cshtml", user);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

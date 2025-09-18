@@ -292,12 +292,14 @@
                         </script>
                             <script>
 
-        var successMsg = document.getElementById("successMsg");
-        var wrong_message = document.getElementById("wrong_message")
-        var email_used = document.getElementById("email_used")
+document.addEventListener("DOMContentLoaded", () => {
+    var successMsg = document.getElementById("successMsg");
+    var wrong_message = document.getElementById("wrong_message");
+    var email_used = document.getElementById("email_used");
 
-        [successMsg, wrong_message, email_used].forEach(el => {
-    if(el) setTimeout(() => el.classList.add("d-none"), 5000);
+    [successMsg, wrong_message, email_used].forEach(el => {
+        if(el) setTimeout(() => el.classList.add("d-none"), 5000);
+    });
 });
 
     </script>
