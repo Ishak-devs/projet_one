@@ -22,9 +22,7 @@ public class UserController : Controller
     {
         _context = context;
     }
-
-
-
+    
     [HttpPost]
     public async Task<IActionResult> Enregistrer_client(User user)
     {

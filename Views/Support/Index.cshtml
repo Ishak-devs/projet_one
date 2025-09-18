@@ -17,11 +17,19 @@
         <div class="admin-card">
 
         <div id="filtre-date" class="mb-3 d-flex gap-2">
-    <label>Du</label>
     <input type="date" id="dateDebut" class="form-control" />
-    <label>Au</label>
     <input type="date" id="dateFin" class="form-control" />
 </div>
+
+  <div class="filter-group">
+                    <label for="searchInput">Recherche</label>
+                    <div class="input-group">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Nom, email..." aria-label="Recherche" />
+<button class="btn btn-outline-secondary" type="button" id="button-search">🔍</button>
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
 
             <div class="table-container">
                 <table class="table table-hover mb-0">
@@ -36,10 +44,11 @@
                     <tbody>
                         @foreach(var u in Model)
                             {
-                                <tr data-date="@u.DateDemande.ToString("yyyy-MM-dd")">
+                                <tr data-date="@u.DateDemande.ToString("yyyy-MM-dd")" data-search="@($"{u.Nom_enseigne} {u.Email} {u.Telephone}")">
                                     <td>@u.Nom_enseigne</td>
                                     <td>@u.Email</td>
                                     <td>@Regex.Replace(u.Telephone ?? "", @"(\d{2})(?=\d)", "$1.")</td>
+
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center align-items-center">
                                             <input type="text" class="form-control form-control-sm statut-input me-2" value="@u.Statut" id="statut-@u.Id" />
@@ -73,6 +82,19 @@
 </body>
 </html>
 <script>
+
+function filtrerRecherche() {
+    const searchText = document.getElementById("searchInput").value.toLowerCase();
+    const rows = document.querySelectorAll("table tbody tr");
+    rows.forEach(row => {
+        const searchContent = row.getAttribute("data-search").toLowerCase();
+        row.style.display = searchContent.includes(searchText) ? "" : "none";
+    });
+}
+
+// déclenchement à chaque saisie
+document.getElementById("searchInput").addEventListener("input", filtrerRecherche);
+
 
 function exportTableToExcel() {
     const rows = document.querySelectorAll("table tbody tr");
