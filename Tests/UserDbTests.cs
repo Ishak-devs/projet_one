@@ -1,8 +1,13 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 using projet_one.Data;
 using projet_one.Models;
+using projet_one.Services;
 using Xunit;
+
 
 namespace projet_one.Tests
 {
@@ -56,10 +61,45 @@ namespace projet_one.Tests
                 Assert.Equal("0123456789", user.Telephone);
             }
         }
+
         [Fact]
-        public async Task Login_admin()
+public async Task Login_admin()
+{
+    var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+        .UseMySql(
+            "Server=localhost;Database=projet_one_db;User=root;Password=;",
+            new MySqlServerVersion(new Version(8, 0, 43))
+        )
+        .Options;
+
+    using (var context = new ApplicationDbContext(options))
+    {
+        await context.Database.EnsureCreatedAsync();
+
+        var user = new User
         {
-            
-        }
+            Id = "admin-id-123",
+            UserName = "adminuser",
+            Email = "admin@test.com",
+            Nom_enseigne = "AdminEnseigne",
+            Telephone = "0123456789",
+            SecurityStamp = Guid.NewGuid().ToString()
+        };
+
+        var password = "Admin123!";
+        var hasher = new Microsoft.AspNetCore.Identity.PasswordHasher<User>();
+        user.PasswordHash = hasher.HashPassword(user, password);
+
+        context.Users.Add(user);
+        await context.SaveChangesAsync();
+
+        // Vérification
+        var savedUser = await context.Users.FirstOrDefaultAsync(u => u.Id == "admin-id-123");
+        Assert.NotNull(savedUser);
+        var result = hasher.VerifyHashedPassword(savedUser, savedUser.PasswordHash, password);
+        Assert.Equal(Microsoft.AspNetCore.Identity.PasswordVerificationResult.Success, result);
+    }
+}
+
     }
 }
