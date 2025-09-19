@@ -14,6 +14,16 @@
             <p class="text-muted mb-0">Gestion des demandes utilisateurs</p>
         </div>
 
+<div class="d-flex justify-content-end mt-2">
+    <button class="btn btn-primary" onclick="exportTableToExcel()">Exporter vers Excel</button>
+</div>
+
+@*<div class="d-flex justify-content-end mt-2">
+    <form asp-controller="Support" asp-action="Deconnexion" method="post">
+        <button type="submit" class="btn btn-primary">Déconnexion</button>
+    </form>
+</div>*@
+
         <div class="admin-card">
 
         <div id="filtre-date" class="mb-3 d-flex gap-2">
@@ -58,7 +68,6 @@
                                     
                                 </tr>
                             }
-
                     </tbody>
                 </table>
             </div>
@@ -68,16 +77,6 @@
             <div class="text-muted small">
                 Affichage de @Model.Count éléments
             </div>
-<div class="d-flex justify-content-end mt-2">
-    <button class="btn btn-primary" onclick="exportTableToExcel()">Exporter vers Excel</button>
-</div>
-
-<div class="d-flex justify-content-end mt-2">
-    <form asp-controller="Support" asp-action="Deconnexion" method="post">
-        <button type="submit" class="btn btn-primary">Déconnexion</button>
-    </form>
-</div>
-
 
 </body>
 </html>
